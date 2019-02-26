@@ -3,6 +3,8 @@ package main.java.dk.doggycraft.dcprison;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.material.Door;
@@ -187,6 +189,9 @@ public class BlockListener implements Listener
 				state.setData((MaterialData) o);
 				state.update();
 				event.getPlayer().sendMessage(ChatColor.YELLOW + "Lukkede døren!");
+				/* Plays a sound */
+				World w = player.getWorld();
+				w.playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 10, 1);
 			}
 			else
 			{
@@ -195,6 +200,9 @@ public class BlockListener implements Listener
 				state.setData((MaterialData) o);
 				state.update();
 				event.getPlayer().sendMessage(ChatColor.YELLOW + "Åbnede døren!");
+				/* Plays a sound */
+				World w = player.getWorld();
+				w.playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 10, 1);
 			}
 			return;
 		}

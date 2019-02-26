@@ -68,9 +68,10 @@ public class PrisonManager
 	{
 		String[] lines = event.getLines();
 
-		event.setLine(0, "");
-		event.setLine(1, "Klik for at:");
-		event.setLine(2, "Rankup!");
+		event.setLine(0, "&4&mI                   I");
+		event.setLine(1, "&cKlik for at");
+		event.setLine(2, "&cRankup");
+		event.setLine(3, "&4&mI                   I");
 
 		event.getPlayer().sendMessage(ChatColor.AQUA + "You placed a rankup sign!");
 
@@ -81,9 +82,10 @@ public class PrisonManager
 	{
 		String[] lines = event.getLines();
 
-		event.setLine(0, "");
-		event.setLine(1, "Klik for at:");
-		event.setLine(2, "Gå i Prestige!");
+		event.setLine(0, "&4&mI                   I");
+		event.setLine(1, "&cKlik for at gå");
+		event.setLine(2, "&cPrestige");
+		event.setLine(3, "&4&mI                   I");
 
 		event.getPlayer().sendMessage(ChatColor.AQUA + "You placed a prestige sign!");
 
@@ -119,12 +121,12 @@ public class PrisonManager
 
 		String[] lines = sign.getLines();
 
-		if (!lines[1].equalsIgnoreCase("Klik for at:"))
+		if (!lines[1].equalsIgnoreCase("§cKlik for at"))
 		{
 			this.plugin.logDebug("Not written Klik for at: on the second line: " + lines[1]);
 			return false;
 		}
-		if (!lines[2].equalsIgnoreCase("Rankup!"))
+		if (!lines[2].equalsIgnoreCase("§cRankup"))
 		{
 			this.plugin.logDebug("Not written Rankup! on the third line: " + lines[2]);
 			return false;
@@ -161,14 +163,14 @@ public class PrisonManager
 
 		String[] lines = sign.getLines();
 
-		if (!lines[1].equalsIgnoreCase("Klik for at:"))
+		if (!lines[1].equalsIgnoreCase("§cKlik for at gå"))
 		{
-			this.plugin.logDebug("Not written Klik for at: on the second line: " + lines[1]);
+			this.plugin.logDebug("Not written Klik for at on the second line: " + lines[1]);
 			return false;
 		}
-		if (!lines[2].equalsIgnoreCase("Gå i Prestige!"))
+		if (!lines[2].equalsIgnoreCase("§cPrestige"))
 		{
-			this.plugin.logDebug("Not written Gå i Prestige! on the third line: " + lines[2]);
+			this.plugin.logDebug("Not written Prestige on the third line: " + lines[2]);
 			return false;
 		}
 
