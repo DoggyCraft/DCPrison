@@ -1,0 +1,28 @@
+name: DCPrison
+main: main.java.dk.doggycraft.dcprison.Prison
+author: DoggyCraft
+version: ${project.version}
+description: Essentials for DoggyCraft Prison
+softdepend: [Vault]
+website: https://github.com/DoggyCraftDK/DCPrison
+commands:
+  prison:
+    description: Controls the DCPrison system
+    usage: /prison
+permissions:
+    prison.*:
+        description: Gives the Player access to control the DCPrison system
+        default: false
+        children:
+            prison.irondoor: true
+            prison.placesign: true
+            prison.reload: false
+    prison.irondoor:
+        description: Allows the Player to open locked iron doors
+        default: false
+    prison.reload:
+        description: Allows the Player to reload the DCPrison system
+        default: false
+    prison.placesign:
+        description: Allows the Player to place Rankup and Prestige signs
+        default: false
