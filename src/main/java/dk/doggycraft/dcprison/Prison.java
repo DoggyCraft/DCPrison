@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Prison extends JavaPlugin
 {
 	private PermissionsManager	permissionManager	= null;
+	private ChatManager			chatManager	= null;
 	private RegionManager		regionManager		= null;
 	private PrisonManager		prisonManager		= null;
 
@@ -28,6 +29,11 @@ public class Prison extends JavaPlugin
 	public PermissionsManager getPermissionsManager()
 	{
 		return this.permissionManager;
+	}
+	
+	public ChatManager getChatManager()
+	{
+		return this.chatManager;
 	}
 	
 	public RegionManager getRegionManager()
@@ -86,6 +92,7 @@ public class Prison extends JavaPlugin
 	public void onEnable()
 	{
 		this.permissionManager = new PermissionsManager(this);
+		this.chatManager = new ChatManager(this);
 		this.prisonManager = new PrisonManager(this);
 		this.regionManager = new RegionManager(this);
 
@@ -95,10 +102,12 @@ public class Prison extends JavaPlugin
 		saveSettings();
 
 		this.permissionManager.load();
+		this.chatManager.load();
 		this.prisonManager.load();
 		this.regionManager.load();
 
 		getServer().getPluginManager().registerEvents(new BlockListener(this), this);
+		getServer().getPluginManager().registerEvents(new KillListener(this), this);
 
 	}
 

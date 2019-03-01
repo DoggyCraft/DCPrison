@@ -1,8 +1,5 @@
 package main.java.dk.doggycraft.dcprison;
 
-import java.util.List;
-
-//import java.util.Comparator;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -35,6 +32,7 @@ public class Commands
 					if(args[0].equalsIgnoreCase("reload"))
 					{
 						plugin.reloadSettings();
+						this.plugin.log(this.plugin.getDescription().getFullName() + ": Genindlæst konfiguration.");
 
 						return true;
 					}
@@ -61,7 +59,7 @@ public class Commands
 					}
 
 					this.plugin.reloadSettings();
-					sender.sendMessage(ChatColor.YELLOW + this.plugin.getDescription().getFullName() + ":" + ChatColor.AQUA + " Reloaded configuration.");
+					sender.sendMessage(ChatColor.YELLOW + this.plugin.getDescription().getFullName() + ":" + ChatColor.AQUA + " Genindlæst konfiguration.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("help"))
@@ -94,7 +92,7 @@ public class Commands
 		sender.sendMessage(ChatColor.YELLOW + "------------------ " + plugin.getDescription().getFullName() + " ------------------");
 		sender.sendMessage(ChatColor.AQUA + "Lavet af DoggyCraft");
 		sender.sendMessage(ChatColor.AQUA + "");
-		sender.sendMessage(ChatColor.AQUA + "Brug " + ChatColor.WHITE + "/prison help" + ChatColor.AQUA + " for at få en liste over kommandoer");
+		sender.sendMessage(ChatColor.AQUA + "Brug " + ChatColor.WHITE + "/prison help" + ChatColor.AQUA + ", for at få en liste over kommandoer");
 
 		return true;
 	}
@@ -105,7 +103,7 @@ public class Commands
 		sender.sendMessage(ChatColor.AQUA + "/prison" + ChatColor.WHITE + " - Info om pluginnet");
 		if ((sender.isOp()) || (sender.hasPermission("prison.reload")))
 		{
-			sender.sendMessage(ChatColor.AQUA + "/prison reload" + ChatColor.WHITE + " - Reloads the DCPrison system");
+			sender.sendMessage(ChatColor.AQUA + "/prison reload" + ChatColor.WHITE + " - Genindlæser DCPrison systemet");
 		}
 
 		return true;

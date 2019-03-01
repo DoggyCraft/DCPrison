@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.DoggyCraft</groupId>
   <artifactId>dcprison</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <name>DCPrison</name>
   <description>Essentials for DoggyCraft Prison</description>
   <url>https://github.com/DoggyCraftDK/DCPrison</url>

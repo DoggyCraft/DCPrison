@@ -26,3 +26,6 @@ permissions:
     prison.placesign:
         description: Allows the Player to place Rankup and Prestige signs
         default: false
+    prison.showkill:
+        description: If the Player kills someone a custom kill message will be shown
+        default: false

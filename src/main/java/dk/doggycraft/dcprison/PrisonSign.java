@@ -1,6 +1,5 @@
 package main.java.dk.doggycraft.dcprison;
 
-import java.util.Date;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
