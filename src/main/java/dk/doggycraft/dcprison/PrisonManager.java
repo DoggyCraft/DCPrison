@@ -1,6 +1,5 @@
 package main.java.dk.doggycraft.dcprison;
 
-import java.util.Random;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,8 +8,6 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.inventory.ItemStack;
-
-import net.milkbowl.vault.economy.Economy;
 
 public class PrisonManager
 {
@@ -31,7 +28,6 @@ public class PrisonManager
 		event.setCancelled(true);
 		event.getBlock().setType(Material.AIR);
 		event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), new ItemStack(Material.SIGN, 1));
-		return;
 	}
 	
 	public boolean handleNewRankupSign(SignChangeEvent event)
@@ -71,12 +67,7 @@ public class PrisonManager
 		
 		clickedBlock.getState();
 		
-		if (!lines[0].equalsIgnoreCase("Rankup"))
-		{
-			return false;
-		}
-
-		return true;
+		return lines[0].equalsIgnoreCase("Rankup");
 	}
 	
 	public boolean isRankupSign(Block clickedBlock)
@@ -91,12 +82,8 @@ public class PrisonManager
 		{
 			return false;
 		}
-		if (!lines[2].equalsIgnoreCase("§cRankup"))
-		{
-			return false;
-		}
-
-		return true;
+		
+		return lines[2].equalsIgnoreCase("§cRankup");
 	}
 	
 	public boolean isNewPrestigeSign(Block clickedBlock, String[] lines)
@@ -108,12 +95,7 @@ public class PrisonManager
 		
 		clickedBlock.getState();
 
-		if (!lines[0].equalsIgnoreCase("Prestige"))
-		{
-			return false;
-		}
-
-		return true;
+		return lines[0].equalsIgnoreCase("Prestige");
 	}
 	
 	public boolean isPrestigeSign(Block clickedBlock)
@@ -128,32 +110,20 @@ public class PrisonManager
 		{
 			return false;
 		}
-		if (!lines[2].equalsIgnoreCase("§cPrestige"))
-		{
-			return false;
-		}
 
-		return true;
+		return lines[2].equalsIgnoreCase("§cPrestige");
 	}
 	
 	public boolean isIronDoor(Block clickedBlock)
 	{
-		if ((clickedBlock == null) || (clickedBlock.getType() != Material.IRON_DOOR))
-		{
-			return false;
-		}
-		return true;
+		return (!(clickedBlock == null) || !(clickedBlock.getType() != Material.IRON_DOOR));
 	}
 	
 	public boolean playerCanOpenDoor(Player player, Block clickedBlock)
 	{
 		if (!player.isOp() && !plugin.getPermissionsManager().hasPermission(player, "prison.irondoor"))
 		{
-			if (!plugin.getRegionManager().canBuild(player, clickedBlock))
-			{
-				return false;
-			}
-			return true;
+			return plugin.getRegionManager().canBuild(player, clickedBlock);
 		}
 		return true;
 	}

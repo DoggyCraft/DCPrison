@@ -6,4 +6,3 @@ DC Prison
 
 Basic Prison Essentials for DoggyCraft's new Prison server, like opening the iron doors and whatever.  
 Server Address: doggycraft.dk
-

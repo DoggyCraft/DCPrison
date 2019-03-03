@@ -17,7 +17,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemStack;
 
 public class BlockListener implements Listener
 {
@@ -149,7 +148,6 @@ public class BlockListener implements Listener
 				o.setOpen(false);
 				state.setData((MaterialData) o);
 				state.update();
-				event.getPlayer().sendMessage(ChatColor.YELLOW + "Lukkede døren!");
 				/* Plays a sound */
 				World w = player.getWorld();
 				w.playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 10, 1);
@@ -159,7 +157,6 @@ public class BlockListener implements Listener
 				o.setOpen(true);
 				state.setData((MaterialData) o);
 				state.update();
-				event.getPlayer().sendMessage(ChatColor.YELLOW + "Åbnede døren!");
 				/* Plays a sound */
 				World w = player.getWorld();
 				w.playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 10, 1);

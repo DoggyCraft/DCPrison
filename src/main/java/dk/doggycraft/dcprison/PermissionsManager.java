@@ -8,9 +8,9 @@ import net.milkbowl.vault.permission.Permission;
 
 public class PermissionsManager
 {
-	private String				pluginName			= "null";
+	private String			pluginName			= "null";
 	private Prison			plugin;
-	private Permission 			vaultPermission;
+	private Permission 		vaultPermission;
 	
 	public PermissionsManager(Prison p)
 	{

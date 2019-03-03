@@ -8,15 +8,14 @@ import net.milkbowl.vault.chat.Chat;
 
 public class ChatManager
 {
-	private String				pluginName			= "null";
 	private Prison			plugin;
-	private static Chat vaultChat;
+	private Chat vaultChat;
 	
 	public ChatManager(Prison p)
 	{
 		this.plugin = p;
 			
-		RegisteredServiceProvider<Chat> chatProvider = plugin.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
+		RegisteredServiceProvider<Chat> chatProvider = plugin.getServer().getServicesManager().getRegistration(Chat.class);
 		vaultChat = chatProvider.getProvider();
 	}
 

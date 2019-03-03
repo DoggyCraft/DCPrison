@@ -36,7 +36,5 @@ public class KillListener implements Listener
 		}
 		
 		plugin.sendToAll(ChatColor.RED + killerPrefix + ChatColor.RED + killer.getDisplayName() + ChatColor.DARK_RED + " dræbte " + ChatColor.RED + playerPrefix + ChatColor.RED + player.getDisplayName() + ChatColor.DARK_RED + "!");
-		
-		return;
 	}
 }
