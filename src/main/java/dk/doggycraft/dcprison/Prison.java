@@ -13,7 +13,7 @@ public class Prison extends JavaPlugin
 {
 	private PermissionsManager	permissionManager	= null;
 	private ChatManager			chatManager	= null;
-	private RegionManager		regionManager		= null;
+	private PrisonRegionManager	regionManager		= null;
 	private PrisonManager		prisonManager		= null;
 
 	private FileConfiguration	config				= null;
@@ -36,7 +36,7 @@ public class Prison extends JavaPlugin
 		return this.chatManager;
 	}
 	
-	public RegionManager getRegionManager()
+	public PrisonRegionManager getRegionManager()
 	{
 		return this.regionManager;
 	}
@@ -94,7 +94,7 @@ public class Prison extends JavaPlugin
 		this.permissionManager = new PermissionsManager(this);
 		this.chatManager = new ChatManager(this);
 		this.prisonManager = new PrisonManager(this);
-		this.regionManager = new RegionManager(this);
+		this.regionManager = new PrisonRegionManager(this);
 
 		this.commands = new Commands(this);
 

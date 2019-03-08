@@ -116,14 +116,14 @@ public class PrisonManager
 	
 	public boolean isIronDoor(Block clickedBlock)
 	{
-		return (!(clickedBlock == null) || !(clickedBlock.getType() != Material.IRON_DOOR));
+		return (clickedBlock != null) || (clickedBlock.getType() == Material.IRON_DOOR);
 	}
 	
 	public boolean playerCanOpenDoor(Player player, Block clickedBlock)
 	{
 		if (!player.isOp() && !plugin.getPermissionsManager().hasPermission(player, "prison.irondoor"))
 		{
-			return plugin.getRegionManager().canBuild(player, clickedBlock);
+			return plugin.getRegionManager().isMemberOfRegion(player, clickedBlock);
 		}
 		return true;
 	}

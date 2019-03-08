@@ -5,8 +5,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.material.Door;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.Openable;
@@ -113,6 +115,7 @@ public class BlockListener implements Listener
 	{
 		Player player = event.getPlayer();
 
+		plugin.logDebug("Hand clicked with:" + event.getHand());
 		if (!event.getHand().equals(EquipmentSlot.HAND))
 		{
 			return;
@@ -122,35 +125,72 @@ public class BlockListener implements Listener
 		{
 			return;
 		}
+		plugin.logDebug("it's a rightclick");
 		if (event.getClickedBlock() == null)
 		{
 			return;
 		}
+		plugin.logDebug("Block:" + event.getClickedBlock().getType());
 		if (event.getClickedBlock().getType() != Material.WALL_SIGN)
 		{
-			if (event.getClickedBlock().getType() != Material.IRON_DOOR_BLOCK)
+			if ((event.getClickedBlock().getType() != Material.LEGACY_IRON_DOOR) && (event.getClickedBlock().getType() != Material.IRON_DOOR))
 			{
 				return;
 			}
+			plugin.logDebug("can the player open?");
 			if (!plugin.getPrisonManager().playerCanOpenDoor(player, event.getClickedBlock()))
 			{
 				return;
 			}
-			BlockState state = event.getClickedBlock().getState();
+			plugin.logDebug("yes");
+			/*BlockState state = event.getClickedBlock().getState();
 			Door door = (Door) state.getData();
+			plugin.logDebug("Door is tophalf:" + door.isTopHalf());
+			plugin.logDebug("Door hinge:" + door.getHinge());
 			if (door.isTopHalf())
 			{
 				state = event.getClickedBlock().getRelative(BlockFace.DOWN).getState();
 			}
-			Openable o = (Openable) state.getData();
+			Openable o = (Openable) state.getData();*/
+			
+			Block clickedBlock = event.getClickedBlock();
+			BlockData data = event.getClickedBlock().getBlockData();
+			Door door = (Door)data;
+			
+			if (door.getHalf() == Half.TOP)
+			{
+				clickedBlock = clickedBlock.getRelative(BlockFace.DOWN);
+				door = (Door)clickedBlock.getBlockData();
+			}
+			
+			https://github.com/Psychlist1972/Minecraft-DoorCloser/blob/master/src/main/java/net/tenrem/doorcloser/InteractListener.java
+
+			if (data instanceof Openable)
+			{
+				if (!((Openable)data).isOpen())
+				{
+					((Openable)data).setOpen(true);
+
+					event.getClickedBlock().setBlockData(data);
+				}
+				else
+				{
+					((Openable)data).setOpen(false);
+
+					event.getClickedBlock().setBlockData(data);
+				}
+			}
+			else
+			{
+				//nothing
+			}
 			if (o.isOpen())
 			{
 				o.setOpen(false);
 				state.setData((MaterialData) o);
 				state.update();
 				/* Plays a sound */
-				World w = player.getWorld();
-				w.playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 10, 1);
+				player.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 10, 1);
 			}
 			else
 			{
@@ -158,8 +198,7 @@ public class BlockListener implements Listener
 				state.setData((MaterialData) o);
 				state.update();
 				/* Plays a sound */
-				World w = player.getWorld();
-				w.playSound(event.getClickedBlock().getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 10, 1);
+				player.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 10, 1);
 			}
 			return;
 		}

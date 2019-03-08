@@ -3,7 +3,7 @@ main: main.java.dk.doggycraft.dcprison.Prison
 author: DoggyCraft
 version: ${project.version}
 description: Essentials for DoggyCraft Prison
-softdepend: [Vault]
+softdepend: [Vault, WorldGuard]
 website: https://github.com/DoggyCraftDK/DCPrison
 commands:
   prison:
