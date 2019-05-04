@@ -20,6 +20,7 @@ public class Prison extends JavaPlugin
 	private Commands			commands			= null;
 
 	public boolean				debug				= false;
+	public String				killMessage			= "&r{killerPrefix}&r{killerDisplayname} &rdræbte &r{killedPrefix}&r{killedDisplayname}&r!";
 
 	public PrisonManager getPrisonManager()
 	{
@@ -73,6 +74,7 @@ public class Prison extends JavaPlugin
 	{
 		reloadConfig();
 		loadSettings();
+		saveSettings();
 	}
 
 	public void loadSettings()
@@ -80,11 +82,13 @@ public class Prison extends JavaPlugin
 		config = getConfig();
 		
 		debug = config.getBoolean("Debug", false);
+		killMessage = config.getString("KillMessage", "&r{killerPrefix}&r{killerDisplayname} &rdræbte &r{killedPrefix}&r{killedDisplayname}&r!");
 	}
 
 	public void saveSettings()
 	{
 		config.set("Debug", debug);
+		config.set("KillMessage", killMessage);
 
 		saveConfig();
 	}

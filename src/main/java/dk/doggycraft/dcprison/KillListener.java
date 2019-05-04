@@ -26,15 +26,18 @@ public class KillListener implements Listener
 		{
 			return;
 		}
-
-		String playerPrefix = plugin.getChatManager().getPrefix(player);
-		String killerPrefix = plugin.getChatManager().getPrefix(killer);
 		
 		if (!plugin.getPermissionsManager().hasPermission(killer, "prison.showkill"))
 		{
 			return;
 		}
 		
-		plugin.sendToAll(ChatColor.RED + killerPrefix + ChatColor.RED + killer.getDisplayName() + ChatColor.DARK_RED + " dræbte " + ChatColor.RED + playerPrefix + ChatColor.RED + player.getDisplayName() + ChatColor.DARK_RED + "!");
+		;
+		
+		String playerPrefix = plugin.getChatManager().getPrefix(player);
+		String killerPrefix = plugin.getChatManager().getPrefix(killer);
+		
+		String killMessage = plugin.killMessage.replace("{killerPrefix}", killerPrefix).replace("{killerDisplayname}", killer.getDisplayName()).replace("{killedPrefix}", playerPrefix).replace("{killedDisplayname}", player.getDisplayName());
+		plugin.sendToAll(ChatColor.translateAlternateColorCodes('&', killMessage));
 	}
 }
