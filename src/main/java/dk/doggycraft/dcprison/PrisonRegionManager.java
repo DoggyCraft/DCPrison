@@ -13,6 +13,13 @@ import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 public class PrisonRegionManager
 {
+	private Prison			plugin;	
+
+	PrisonRegionManager(Prison p)	
+	{	
+		this.plugin = p;	
+	}
+	
 	public void load()
 	{
 		// Nothing to see here
@@ -37,8 +44,9 @@ public class PrisonRegionManager
 		
 		for (ProtectedRegion region : set) {
 			DefaultDomain members = region.getMembers();
-			if (members.contains(player.getUniqueId()) == true)
+			if (members.contains(player.getUniqueId()))
 			{
+				plugin.logDebug("Player is member of region: " + region.getId());
 				return true;
 			}
 		}
