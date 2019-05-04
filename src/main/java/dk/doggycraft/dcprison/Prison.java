@@ -1,4 +1,4 @@
-package main.java.dk.doggycraft.dcprison;
+package dk.doggycraft.dcprison;
 
 import java.util.logging.Logger;
 

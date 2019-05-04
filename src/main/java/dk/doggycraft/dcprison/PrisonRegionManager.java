@@ -1,4 +1,4 @@
-package main.java.dk.doggycraft.dcprison;
+package dk.doggycraft.dcprison;
 
 import org.bukkit.Location;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
@@ -13,6 +13,7 @@ import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 public class PrisonRegionManager
 {
+	@SuppressWarnings("unused")
 	private Prison			plugin;
 	
 	PrisonRegionManager(Prison p)

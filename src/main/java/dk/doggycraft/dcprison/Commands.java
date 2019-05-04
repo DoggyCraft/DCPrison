@@ -1,4 +1,4 @@
-package main.java.dk.doggycraft.dcprison;
+package dk.doggycraft.dcprison;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -89,7 +89,7 @@ public class Commands
 
 	private boolean commandHelp(CommandSender sender)
 	{
-		sender.sendMessage(ChatColor.YELLOW + "------------------ " + plugin.getDescription().getFullName() + " ------------------");
+		sender.sendMessage(ChatColor.YELLOW + "---------------- " + plugin.getDescription().getFullName() + " ----------------");
 		sender.sendMessage(ChatColor.AQUA + "Lavet af DoggyCraft");
 		sender.sendMessage(ChatColor.AQUA + "");
 		sender.sendMessage(ChatColor.AQUA + "Brug " + ChatColor.WHITE + "/prison help" + ChatColor.AQUA + ", for at få en liste over kommandoer");
@@ -99,7 +99,7 @@ public class Commands
 
 	private boolean commandList(CommandSender sender)
 	{
-		sender.sendMessage(ChatColor.YELLOW + "------------------ " + this.plugin.getDescription().getFullName() + " ------------------");
+		sender.sendMessage(ChatColor.YELLOW + "---------------- " + this.plugin.getDescription().getFullName() + " ----------------");
 		sender.sendMessage(ChatColor.AQUA + "/prison" + ChatColor.WHITE + " - Info om pluginnet");
 		if ((sender.isOp()) || (sender.hasPermission("prison.reload")))
 		{

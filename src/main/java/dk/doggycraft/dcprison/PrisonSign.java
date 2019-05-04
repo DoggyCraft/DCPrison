@@ -1,4 +1,4 @@
-package main.java.dk.doggycraft.dcprison;
+package dk.doggycraft.dcprison;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

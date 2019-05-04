@@ -1,4 +1,4 @@
-package main.java.dk.doggycraft.dcprison;
+package dk.doggycraft.dcprison;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -32,8 +32,6 @@ public class PrisonManager
 	
 	public boolean handleNewRankupSign(SignChangeEvent event)
 	{
-		String[] lines = event.getLines();
-
 		event.setLine(0, "&4&mI                   I");
 		event.setLine(1, "&cKlik for at");
 		event.setLine(2, "&cRankup");
@@ -46,8 +44,6 @@ public class PrisonManager
 	
 	public boolean handleNewPrestigeSign(SignChangeEvent event)
 	{
-		String[] lines = event.getLines();
-
 		event.setLine(0, "&4&mI                   I");
 		event.setLine(1, "&cKlik for at gå");
 		event.setLine(2, "&cPrestige");
@@ -114,10 +110,10 @@ public class PrisonManager
 		return lines[2].equalsIgnoreCase("§cPrestige");
 	}
 	
-	public boolean isIronDoor(Block clickedBlock)
+	/*public boolean isIronDoor(Block clickedBlock)
 	{
 		return (clickedBlock != null) || (clickedBlock.getType() == Material.IRON_DOOR);
-	}
+	}*/
 	
 	public boolean playerCanOpenDoor(Player player, Block clickedBlock)
 	{

@@ -1,7 +1,9 @@
 name: DCPrison
-main: main.java.dk.doggycraft.dcprison.Prison
+main: dk.doggycraft.dcprison.Prison
 author: DoggyCraft
 version: ${project.version}
+api-version: 1.13
+load: POSTWORLD
 description: Essentials for DoggyCraft Prison
 softdepend: [Vault, WorldGuard]
 website: https://github.com/DoggyCraftDK/DCPrison
@@ -14,12 +16,9 @@ permissions:
         description: Gives the Player access to control the DCPrison system
         default: false
         children:
-            prison.irondoor: true
             prison.placesign: true
-            prison.reload: false
-    prison.irondoor:
-        description: Allows the Player to open locked iron doors
-        default: false
+            prison.reload: true
+            prison.showkill: false
     prison.reload:
         description: Allows the Player to reload the DCPrison system
         default: false
