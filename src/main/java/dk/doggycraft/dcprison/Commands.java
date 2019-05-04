@@ -23,36 +23,24 @@ public class Commands
 			player = (Player) sender;
 		}
 
-		if (player == null)
+		if (cmd.getName().equalsIgnoreCase("prison"))
 		{
-			if (cmd.getName().equalsIgnoreCase("prison"))
+			if ((args.length == 0) && (player != null))
 			{
-				if (args.length == 1)
+				commandHelp(sender);
+				return true;
+			}
+			else if (args.length == 1)
+			{
+				if (args[0].equalsIgnoreCase("reload"))
 				{
-					if(args[0].equalsIgnoreCase("reload"))
-					{
+					if (player == null) {
 						plugin.reloadSettings();
 						this.plugin.log(this.plugin.getDescription().getFullName() + ": Genindlæst konfiguration.");
 
 						return true;
 					}
-				}
-			}
-
-			return true;
-		}
-
-		if (cmd.getName().equalsIgnoreCase("prison"))
-		{
-			if (args.length == 0)
-			{
-				commandHelp(sender);
-				return true;
-			}
-			if (args.length == 1)
-			{
-				if (args[0].equalsIgnoreCase("reload"))
-				{
+					
 					if ((!player.isOp()) && (!player.hasPermission("prison.reload")))
 					{
 						return false;
@@ -62,7 +50,7 @@ public class Commands
 					sender.sendMessage(ChatColor.YELLOW + this.plugin.getDescription().getFullName() + ":" + ChatColor.AQUA + " Genindlæst konfiguration.");
 					return true;
 				}
-				if (args[0].equalsIgnoreCase("help"))
+				if ((args[0].equalsIgnoreCase("help")) && (player != null))
 				{
 					if ((!player.isOp()) && (!player.hasPermission("prison.list")))
 					{
@@ -76,8 +64,7 @@ public class Commands
 			}
 			else
 			{
-
-				if (args.length > 2)
+				if ((args.length > 2) && (player != null))
 				{
 					sender.sendMessage(ChatColor.RED + "For mange argumenter! Tjek /prison help");
 					return true;

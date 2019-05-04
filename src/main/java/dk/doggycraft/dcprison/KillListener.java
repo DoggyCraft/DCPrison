@@ -32,8 +32,6 @@ public class KillListener implements Listener
 			return;
 		}
 		
-		;
-		
 		String playerPrefix = plugin.getChatManager().getPrefix(player);
 		String killerPrefix = plugin.getChatManager().getPrefix(killer);
 		

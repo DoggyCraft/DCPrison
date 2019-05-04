@@ -13,14 +13,6 @@ import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 public class PrisonRegionManager
 {
-	@SuppressWarnings("unused")
-	private Prison			plugin;
-	
-	PrisonRegionManager(Prison p)
-	{
-		this.plugin = p;
-	}
-	
 	public void load()
 	{
 		// Nothing to see here
@@ -31,7 +23,7 @@ public class PrisonRegionManager
 		return (BlockVector3.at(location.getX(), location.getY(), location.getZ()));
 	}
 	
-	public static Vector3 asVector(org.bukkit.Location location) {
+	public static Vector3 asVector(Location location) {
         return Vector3.at(location.getX(), location.getY(), location.getZ());
     }
 	
@@ -45,11 +37,10 @@ public class PrisonRegionManager
 		
 		for (ProtectedRegion region : set) {
 			DefaultDomain members = region.getMembers();
-			if (members.contains(player.getUniqueId()) == false)
+			if (members.contains(player.getUniqueId()) == true)
 			{
-				continue;
+				return true;
 			}
-			return true;
 		}
 		return false;
 	}
