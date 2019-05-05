@@ -69,6 +69,10 @@ public class PrisonManager
 	public boolean isRankupSign(Block clickedBlock)
 	{
 		BlockState state = clickedBlock.getState();
+		
+		if(!(state instanceof Sign)) {
+			return false;
+		}
 
 		Sign sign = (Sign) state;
 
@@ -97,6 +101,10 @@ public class PrisonManager
 	public boolean isPrestigeSign(Block clickedBlock)
 	{
 		BlockState state = clickedBlock.getState();
+		
+		if(!(state instanceof Sign)) {
+			return false;
+		}
 
 		Sign sign = (Sign) state;
 
