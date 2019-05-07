@@ -116,12 +116,12 @@ public class BlockListener implements Listener
 	{
 		Player player = event.getPlayer();
 
-		if (!event.getHand().equals(EquipmentSlot.HAND))
+		if (!event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
 		{
 			return;
 		}
 		
-		if (!event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
+		if (!event.getHand().equals(EquipmentSlot.HAND))
 		{
 			return;
 		}
