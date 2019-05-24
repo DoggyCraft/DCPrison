@@ -1,7 +1,5 @@
 package dk.doggycraft.dcprison;
 
-import java.util.logging.Logger;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -21,6 +19,7 @@ public class Prison extends JavaPlugin
 
 	public boolean				debug				= false;
 	public String				killMessage			= "&r{killerPrefix}&r{killerDisplayname} &rdræbte &r{killedPrefix}&r{killedDisplayname}&r!";
+	private static Prison		plugin;
 
 	public PrisonManager getPrisonManager()
 	{
@@ -44,14 +43,14 @@ public class Prison extends JavaPlugin
 
 	public void log(String message)
 	{
-		Logger.getLogger("minecraft").info("[" + getDescription().getFullName() + "] " + message);
+		plugin.getLogger().info(message);
 	}
 
 	public void logDebug(String message)
 	{
 		if (this.debug)
 		{
-			Logger.getLogger("minecraft").info("[" + getDescription().getFullName() + "] " + message);
+			plugin.getLogger().info(message);
 		}
 	}
 
