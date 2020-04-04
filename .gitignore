@@ -11,5 +11,9 @@
 .project
 /.settings/
 
+# Idea
+dcprison.iml
+/.idea/
+
 # Maven build
 /target/

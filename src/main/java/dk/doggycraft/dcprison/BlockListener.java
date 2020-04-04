@@ -3,7 +3,12 @@ package dk.doggycraft.dcprison;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Openable;
+import org.bukkit.block.data.type.Door;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,6 +16,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.material.MaterialData;
 /* Removed open IRON_DOOR functionality...
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
@@ -133,10 +139,10 @@ public class BlockListener implements Listener
 		}
 		
 		plugin.logDebug("Block:" + event.getClickedBlock().getType());
-		if (clickedBlock.getType() != Material.WALL_SIGN)
+		if (clickedBlock.getType() != Material.OAK_WALL_SIGN)
 		{
 			// Remove the Open IRON_DOOR Functionality - not working with 1.13.2 anyway
-			/*if ((clickedBlock.getType() != Material.LEGACY_IRON_DOOR) && (clickedBlock.getType() != Material.IRON_DOOR))
+			if ((clickedBlock.getType() != Material.IRON_DOOR))
 			{
 				return;
 			}
@@ -146,56 +152,39 @@ public class BlockListener implements Listener
 				return;
 			}
 			plugin.logDebug("yes");
-			
-			org.bukkit.block.data.type.Door()
-			
-			BlockData data = clickedBlock.getBlockData();
-			BlockState blockState = clickedBlock.getState();
-			MaterialData blockData = blockState.getData();
-			Door door = (Door) blockData;
-			
-			if (door.isTopHalf())
+
+			//org.bukkit.block.data.type.Door()
+
+			Door door = (Door) clickedBlock.getBlockData();
+
+//			if (door.isTopHalf())
+//			{
+//				clickedBlock = clickedBlock.getRelative(BlockFace.DOWN);
+//				door = (Door)clickedBlock.getBlockData();
+//			}
+
+			if (!door.isOpen())
 			{
-				clickedBlock = clickedBlock.getRelative(BlockFace.DOWN);
-				door = (Door)clickedBlock.getBlockData();
-			}
+				door.setOpen(true);
+				player.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 10, 1);
 
-			if (data instanceof Openable)
-			{
-				if (!((Openable) data).isOpen())
-				{
-					((Openable) data).setOpen(true);
-					player.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_OPEN, 10, 1);
-
-					clickedBlock.setBlockData(data);
-				}
-				else
-				{
-					((Openable) data).setOpen(false);
-					player.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 10, 1);
-
-					clickedBlock.setBlockData(data);
-				}
+				clickedBlock.setBlockData(door);
 			}
 			else
 			{
-				return;
-			}*/
-			return;
+				door.setOpen(false);
+				player.playSound(player.getLocation(), Sound.BLOCK_IRON_DOOR_CLOSE, 10, 1);
+
+				clickedBlock.setBlockData(door);
+			}
 		}
 		else if (plugin.getPrisonManager().isRankupSign(event.getClickedBlock()))
 		{
 			Bukkit.dispatchCommand(player,"rankup");
-			return;
 		}
 		else if (plugin.getPrisonManager().isPrestigeSign(event.getClickedBlock()))
 		{
 			Bukkit.dispatchCommand(player,"prestige");
-			return;
-		}
-		else
-		{
-			return;
 		}
 	}
 }

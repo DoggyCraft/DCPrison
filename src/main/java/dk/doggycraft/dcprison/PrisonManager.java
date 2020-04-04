@@ -27,7 +27,7 @@ public class PrisonManager
 	{
 		event.setCancelled(true);
 		event.getBlock().setType(Material.AIR);
-		event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), new ItemStack(Material.SIGN, 1));
+		event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), new ItemStack(Material.OAK_SIGN, 1));
 	}
 	
 	public boolean handleNewRankupSign(SignChangeEvent event)
@@ -56,7 +56,7 @@ public class PrisonManager
 
 	public boolean isNewRankupSign(Block clickedBlock, String[] lines)
 	{
-		if (clickedBlock.getType() != Material.WALL_SIGN)
+		if (clickedBlock.getType() != Material.OAK_WALL_SIGN)
 		{
 			return false;
 		}
@@ -88,7 +88,7 @@ public class PrisonManager
 	
 	public boolean isNewPrestigeSign(Block clickedBlock, String[] lines)
 	{
-		if (clickedBlock.getType() != Material.WALL_SIGN)
+		if (clickedBlock.getType() != Material.OAK_WALL_SIGN)
 		{
 			return false;
 		}
@@ -125,11 +125,11 @@ public class PrisonManager
 	
 	public boolean playerCanOpenDoor(Player player, Block clickedBlock)
 	{
-		if (!player.isOp() && !plugin.getPermissionsManager().hasPermission(player, "prison.irondoor"))
+		if ((player.isOp() || plugin.getPermissionsManager().hasPermission(player, "prison.irondoor")) && plugin.getRegionManager().isMemberOfRegion(player, clickedBlock))
 		{
-			return plugin.getRegionManager().isMemberOfRegion(player, clickedBlock);
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 }

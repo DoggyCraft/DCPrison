@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.DoggyCraft</groupId>
   <artifactId>dcprison</artifactId>
-  <version>0.0.7</version>
+  <version>0.0.8</version>
   <name>DCPrison</name>
   <description>Essentials for DoggyCraft Prison</description>
   <url>https://github.com/DoggyCraftDK/DCPrison</url>
@@ -24,7 +24,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.13.2-R0.1-SNAPSHOT</version>
+      <version>1.15.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -48,13 +48,13 @@
     <dependency>
         <groupId>com.sk89q.worldedit</groupId>
         <artifactId>worldedit-bukkit</artifactId>
-        <version>7.0.0-SNAPSHOT</version>
+        <version>7.2.0-SNAPSHOT</version>
         <scope>provided</scope>
     </dependency>
     <dependency>
         <groupId>com.sk89q.worldedit</groupId>
         <artifactId>worldedit-core</artifactId>
-        <version>7.0.0-SNAPSHOT</version>
+        <version>7.2.0-SNAPSHOT</version>
         <scope>provided</scope>
     </dependency>
   </dependencies>

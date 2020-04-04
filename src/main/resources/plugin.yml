@@ -19,6 +19,7 @@ permissions:
             prison.placesign: true
             prison.reload: true
             prison.showkill: false
+            prison.irondoor: true
     prison.reload:
         description: Allows the Player to reload the DCPrison system
         default: false
@@ -28,3 +29,6 @@ permissions:
     prison.showkill:
         description: If the Player kills someone a custom kill message will be shown
         default: false
+    prison.irondoor:
+      description: Allows the Player to open iron doors in regions they are members of
+      default: false
