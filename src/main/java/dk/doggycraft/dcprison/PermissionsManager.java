@@ -45,6 +45,12 @@ public class PermissionsManager
 		return vaultPermission.getPrimaryGroup(plugin.getServer().getPlayer(playerName));
 	}
 
+	public void removeGroup(String playerName, String groupName)
+	{
+		Player player = plugin.getServer().getPlayer(playerName);
+		vaultPermission.playerRemoveGroup(player, groupName);
+	}
+
 	public void setGroup(String playerName, String groupName)
 	{
 		Player player = plugin.getServer().getPlayer(playerName);

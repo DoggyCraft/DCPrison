@@ -1,15 +1,19 @@
 package dk.doggycraft.dcprison;
 
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Prison extends JavaPlugin
 {
 	private PermissionsManager	permissionManager	= null;
+	private Economy economyManager;
 	private ChatManager			chatManager	= null;
 	private PrisonRegionManager	regionManager		= null;
 	private PrisonManager		prisonManager		= null;
@@ -30,6 +34,8 @@ public class Prison extends JavaPlugin
 	{
 		return this.permissionManager;
 	}
+
+	public Economy getEconomyManager() { return economyManager; }
 	
 	public ChatManager getChatManager()
 	{
@@ -43,14 +49,14 @@ public class Prison extends JavaPlugin
 
 	public void log(String message)
 	{
-		plugin.getLogger().info(message);
+		getLogger().info(message);
 	}
 
 	public void logDebug(String message)
 	{
 		if (this.debug)
 		{
-			plugin.getLogger().info(message);
+			getLogger().info(message);
 		}
 	}
 
@@ -101,6 +107,17 @@ public class Prison extends JavaPlugin
 
 		this.commands = new Commands(this);
 
+		PluginManager pm = getServer().getPluginManager();
+
+		if (pm.getPlugin("Vault") != null)
+		{
+			RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(Economy.class);
+			if (economyProvider != null)
+			{
+				economyManager = economyProvider.getProvider();
+			}
+		}
+
 		loadSettings();
 		saveSettings();
 
@@ -109,8 +126,8 @@ public class Prison extends JavaPlugin
 		this.prisonManager.load();
 		this.regionManager.load();
 
-		getServer().getPluginManager().registerEvents(new BlockListener(this), this);
-		getServer().getPluginManager().registerEvents(new KillListener(this), this);
+		pm.registerEvents(new BlockListener(this), this);
+		pm.registerEvents(new KillListener(this), this);
 
 	}
 

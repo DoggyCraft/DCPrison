@@ -73,6 +73,22 @@ public class BlockListener implements Listener
 				return;
 			}
 		}
+		else if (plugin.getPrisonManager().isNewPromoteSign(event.getBlock(), event.getLines()))
+		{
+			if (!player.isOp() && !plugin.getPermissionsManager().hasPermission(player, "prison.placesign"))
+			{
+				plugin.getPrisonManager().removeSign(event);
+
+				plugin.sendInfo(player, ChatColor.RED + "Du prøvede at placere et Prison skilt, men du kan ikke placere Prison skilte");
+
+				return;
+			}
+			if (!plugin.getPrisonManager().handleNewPromoteSign(event))
+			{
+				plugin.getPrisonManager().removeSign(event);
+				return;
+			}
+		}
 		else
 		{
 			// Safe checks...
@@ -107,6 +123,23 @@ public class BlockListener implements Listener
 				{
 					plugin.getPrisonManager().removeSign(event);
 					
+					return;
+				}
+			}
+			else if (plugin.getPrisonManager().isPromoteSign(event.getBlock()))
+			{
+				if (!player.isOp() && !plugin.getPermissionsManager().hasPermission(player, "prison.placesign"))
+				{
+					plugin.getPrisonManager().removeSign(event);
+
+					plugin.sendInfo(player, ChatColor.RED + "Du prøvede at placere et Prison skilt, men du kan ikke placere Prison skilte");
+
+					return;
+				}
+				if (!plugin.getPrisonManager().handleNewPromoteSign(event))
+				{
+					plugin.getPrisonManager().removeSign(event);
+
 					return;
 				}
 			}
@@ -185,6 +218,42 @@ public class BlockListener implements Listener
 		else if (plugin.getPrisonManager().isPrestigeSign(event.getClickedBlock()))
 		{
 			Bukkit.dispatchCommand(player,"prestige");
+		}
+		else if (plugin.getPrisonManager().isPromoteSign(event.getClickedBlock()))
+		{
+			plugin.logDebug(plugin.getPermissionsManager().getGroup(player.getName()));
+
+			if (plugin.getPermissionsManager().getGroup(player.getName()).toLowerCase().contains("c-vagt")) {
+				int price = 10000000;
+				if (plugin.getEconomyManager().has(player, price))
+				{
+					plugin.getEconomyManager().withdrawPlayer(player, price);
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " promote vagt");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "warp " + player.getName() + " vagtcentral");
+
+					plugin.sendInfo(player, ChatColor.GOLD + "Tillykke, og velkommen til som en vagt i Block B!");
+				}
+				else {
+					plugin.sendInfo(player, ChatColor.RED + "Du skal have $" + price + " for at kunne blive promoted til B-Vagt!");
+				}
+			}
+			else if (plugin.getPermissionsManager().getGroup(player.getName()).toLowerCase().contains("b-vagt")) {
+				int price = 40000000;
+				if (plugin.getEconomyManager().has(player, price))
+				{
+					plugin.getEconomyManager().withdrawPlayer(player, price);
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " promote vagt");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "warp " + player.getName() + " vagtcentral");
+
+					plugin.sendInfo(player, ChatColor.GOLD + "Tillykke, og velkommen til som en vagt i Block A!");
+				}
+				else {
+					plugin.sendInfo(player, ChatColor.RED + "Du skal have $" + price + " for at kunne blive promoted til A-Vagt!");
+				}
+			}
+			else {
+				plugin.sendInfo(player, ChatColor.RED + "Kun C-Vagter og B-Vagter kan blive promotede!");
+			}
 		}
 	}
 }
